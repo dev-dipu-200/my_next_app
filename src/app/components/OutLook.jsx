@@ -7,7 +7,7 @@ const redirectUri = "https://my-next-app-one-neon.vercel.app/auth/callback";
 const scope = "https://graph.microsoft.com/Mail.Read";
 
 const OutlookConnect = () => {
-  const [accessToken, setAccessToken] = useState('');
+  const [accessToken, setAccessToken] = useState("");
 
   const connectOutlook = () => {
     const authUrl = `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=${clientId}&response_type=token&redirect_uri=${encodeURIComponent(
@@ -27,15 +27,27 @@ const OutlookConnect = () => {
       if (hash.includes("access_token")) {
         const params = new URLSearchParams(hash.substring(1));
         const token = params.get("access_token");
+
         if (token) {
           setAccessToken(token);
+          const startDate = "2024-07-01";
+          const endDate = "2024-07-31";
+
           axios
-            .post("http://10.5.81.83:8001/api/v1/vouchers/outlook/parse-emails?access_token=", null, {
-              params: { access_token: token },
-              headers: {
-                "Content-Type": "application/json",
-              },
-            })
+            .post(
+              `http://10.5.81.83:8001/api/v1/vouchers/outlook/parse-emails`,
+              null,
+              {
+                params: {
+                  access_token: token,
+                  start_date: startDate,
+                  end_date: endDate,
+                },
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
+            )
             .then((response) => {
               console.log("Emails:", response.data);
               alert("Emails parsed successfully!");
