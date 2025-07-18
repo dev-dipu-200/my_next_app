@@ -1,8 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 
-const clientId = "a2f6facc-57fd-4bb8-983a-d1b6a5078ee9"; // Replace with your real App ID
-const redirectUri = "http://10.5.81.83:3000/auth/callback";
+const clientId = "a2f6facc-57fd-4bb8-983a-d1b6a5078ee9";
+const redirectUri = "https://10.5.81.83:3000/auth/callback";
 const scope = "https://graph.microsoft.com/Mail.Read";
 
 const OutlookConnect = () => {
