@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 
 const clientId = "a2f6facc-57fd-4bb8-983a-d1b6a5078ee9";
-const redirectUri = "https://10.5.81.83:3000/auth/callback";
+const redirectUri = "https://my-next-app-one-neon.vercel.app/auth/callback";
 const scope = "https://graph.microsoft.com/Mail.Read";
 
 const OutlookConnect = () => {
@@ -29,7 +29,7 @@ const OutlookConnect = () => {
         setAccessToken(token);
 
         // Send token to FastAPI backend
-        fetch(`http://localhost:8001/api/v1/vouchers/outlook/parse-emails?access_token=${token}`, {
+        fetch(`http://10.5.81.83:8001/api/v1/vouchers/outlook/parse-emails?access_token=${token}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -51,14 +51,14 @@ const OutlookConnect = () => {
     <div className="p-4">
       {accessToken ? (
         <button
-          className="bg-red-600 text-white p-2 rounded"
+          className="bg-red-600 text-white p-2 rounded flex items-center"
           onClick={disconnectOutlook}
         >
           Disconnect Outlook
         </button>
       ) : (
         <button
-          className="bg-blue-600 text-white p-2 rounded"
+          className="bg-blue-600 text-white p-2 rounded flex items-center"
           onClick={connectOutlook}
         >
           Connect Outlook
