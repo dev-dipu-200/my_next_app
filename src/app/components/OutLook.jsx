@@ -30,7 +30,7 @@ const OutlookConnect = () => {
         if (token) {
           setAccessToken(token);
           axios
-            .post("http://10.5.81.83:8001/api/v1/vouchers/outlook/parse-emails", null, {
+            .post("http://10.5.81.83:8001/api/v1/vouchers/outlook/parse-emails?access_token=", null, {
               params: { access_token: token },
               headers: {
                 "Content-Type": "application/json",
